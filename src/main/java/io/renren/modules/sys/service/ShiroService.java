@@ -24,6 +24,8 @@ public interface ShiroService {
      */
     Set<String> getUserPermissions(long userId);
 
+    Set<Long> getUserPermissionMenuIds(long userId);
+
     SysUserTokenEntity queryByToken(String token);
 
     /**

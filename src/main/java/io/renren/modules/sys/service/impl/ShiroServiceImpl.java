@@ -55,6 +55,25 @@ public class ShiroServiceImpl implements ShiroService {
         }
         return permsSet;
     }
+    @Override
+    public Set<Long> getUserPermissionMenuIds(long userId) {
+        List<Long> permsList;
+
+        //系统管理员，拥有最高权限
+        if(userId == Constant.SUPER_ADMIN){
+            List<SysMenuEntity> menuList = sysMenuDao.selectList(null);
+            permsList = new ArrayList<>(menuList.size());
+            for(SysMenuEntity menu : menuList){
+                permsList.add(menu.getMenuId());
+            }
+        }else{
+            permsList = sysUserDao.queryAllMenuId(userId);
+        }
+        //用户权限列表
+        Set<Long> permsSet = new HashSet<>();
+        permsSet.addAll(permsList);
+        return permsSet;
+    }
 
     @Override
     public SysUserTokenEntity queryByToken(String token) {
