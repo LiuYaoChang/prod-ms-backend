@@ -94,7 +94,7 @@ public class SysMenuController extends AbstractController {
 		root.setOpen(true);
 		menuList.add(root);
 		
-		return R.ok().put("menuList", menuList);
+		return R.ok().put("data", menuList);
 	}
 	
 	/**
@@ -104,7 +104,7 @@ public class SysMenuController extends AbstractController {
 	@RequiresPermissions("sys:menu:info")
 	public R info(@PathVariable("menuId") Long menuId){
 		SysMenuEntity menu = sysMenuService.getById(menuId);
-		return R.ok().put("menu", menu);
+		return R.ok().put("data", menu);
 	}
 	
 	/**

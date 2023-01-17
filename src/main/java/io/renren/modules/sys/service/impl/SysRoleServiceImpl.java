@@ -66,7 +66,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
         role.setCreateTime(new Date());
         this.save(role);
 
-        //检查权限是否越权
+        // 检查权限是否越权
         checkPrems(role);
 
         //保存角色与菜单关系
